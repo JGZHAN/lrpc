@@ -47,7 +47,7 @@
 
 ### 1:rpc-core的使用方式
 - 服务端
-#### 用例链接：[ServerTest](lrpc-core/src/test/java/server/ServerTest.java)
+- 用例链接：[ServerTest](lrpc-core/src/test/java/server/ServerTest.java)
 ```java
 
 @Test
