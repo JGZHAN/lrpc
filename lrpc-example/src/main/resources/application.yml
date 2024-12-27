@@ -1,0 +1,17 @@
+lrpcc:
+  protocol:
+    serializer: JSON
+  client:
+    address-max-connection: 1000
+    load-balance: ROUND_ROBIN
+  server:
+    port: 23923
+    worker-max: 1000000
+  registry:
+    type: ZOOKEEPER
+    zookeeper:
+      address: 8.210.175.23:2181
+
+spring:
+  application:
+    name: lrpc-example
