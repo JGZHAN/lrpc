@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.client.net;
+package cn.jgzhan.lrpc.client.net;
 
-import cn.jgzhan.lrpc.example.common.config.HandlerConfig;
+import cn.jgzhan.lrpc.common.config.HandlerConfig;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
 /**
  * @author jgzhan

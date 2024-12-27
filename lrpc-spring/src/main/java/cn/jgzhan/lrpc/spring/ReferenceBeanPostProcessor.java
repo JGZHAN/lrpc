@@ -1,13 +1,13 @@
-package cn.jgzhan.lrpc.example.spring;
+package cn.jgzhan.lrpc.spring;
 
-import cn.jgzhan.lrpc.example.client.Comsumer;
-import cn.jgzhan.lrpc.example.common.annotation.LrpcReference;
-import cn.jgzhan.lrpc.example.common.annotation.LrpcService;
-import cn.jgzhan.lrpc.example.common.config.LrpcProperties;
-import cn.jgzhan.lrpc.example.common.util.AddressUtils;
-import cn.jgzhan.lrpc.example.common.util.FieldUtils;
-import cn.jgzhan.lrpc.example.registry.ServiceManager;
-import cn.jgzhan.lrpc.example.server.Provider;
+import cn.jgzhan.lrpc.client.Comsumer;
+import cn.jgzhan.lrpc.common.annotation.LrpcReference;
+import cn.jgzhan.lrpc.common.annotation.LrpcService;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.util.AddressUtils;
+import cn.jgzhan.lrpc.common.util.FieldUtils;
+import cn.jgzhan.lrpc.registry.ServiceManager;
+import cn.jgzhan.lrpc.server.Provider;
 import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
 /**
  * @author jgzhan
@@ -31,7 +31,7 @@ public class ReferenceBeanPostProcessor implements BeanPostProcessor, Disposable
     private final Comsumer comsumer;
     private final ServiceManager serviceManager;
 
-    public ReferenceBeanPostProcessor(LrpcProperties lrpcProperties) {
+    public <T extends LrpcProperties> ReferenceBeanPostProcessor(T lrpcProperties) {
         PROPERTIES_THREAD_LOCAL.set(lrpcProperties);
         this.serviceManager = new ServiceManager();
         // 服务端使用的远程服务缓存

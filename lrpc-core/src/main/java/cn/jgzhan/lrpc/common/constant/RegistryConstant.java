@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.constant;
+package cn.jgzhan.lrpc.common.constant;
 
 /**
  * @author jgzhan

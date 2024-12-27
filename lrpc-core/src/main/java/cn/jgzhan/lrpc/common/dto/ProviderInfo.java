@@ -14,7 +14,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Provider {
+public class ProviderInfo {
 
     private Pair<String/*host*/, Integer/*port*/> address;
 

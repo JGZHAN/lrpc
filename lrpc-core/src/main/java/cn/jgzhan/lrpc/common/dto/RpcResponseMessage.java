@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.dto;
+package cn.jgzhan.lrpc.common.dto;
 
 
 import lombok.AllArgsConstructor;

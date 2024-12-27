@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.common.group;
+package cn.jgzhan.lrpc.common.group;
 
-import cn.jgzhan.lrpc.example.common.thread.VirtualThreadFactory;
+import cn.jgzhan.lrpc.common.thread.VirtualThreadFactory;
 import io.netty.channel.nio.NioEventLoopGroup;
 
 import java.util.concurrent.ThreadFactory;

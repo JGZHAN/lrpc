@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.annotation;
+package cn.jgzhan.lrpc.common.annotation;
 
 import java.lang.annotation.*;
 

@@ -1,9 +1,9 @@
-package cn.jgzhan.lrpc.example.common.protocol;
+package cn.jgzhan.lrpc.common.protocol;
 
-import cn.jgzhan.lrpc.example.common.config.LrpcProperties;
-import cn.jgzhan.lrpc.example.common.dto.Message;
-import cn.jgzhan.lrpc.example.common.serializer.Serializer;
-import cn.jgzhan.lrpc.example.common.serializer.SerializerEnum;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.dto.Message;
+import cn.jgzhan.lrpc.common.serializer.Serializer;
+import cn.jgzhan.lrpc.common.serializer.SerializerEnum;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageCodec;
@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
 /**
  * @author jgzhan

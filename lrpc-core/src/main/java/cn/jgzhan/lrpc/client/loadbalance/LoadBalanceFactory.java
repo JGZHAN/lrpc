@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.client.loadbalance;
+package cn.jgzhan.lrpc.client.loadbalance;
 
 import lombok.NonNull;
 

@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.client.net;
+package cn.jgzhan.lrpc.client.net;
 
-import cn.jgzhan.lrpc.example.common.exception.LRPCTimeOutException;
+import cn.jgzhan.lrpc.common.exception.LRPCTimeOutException;
 import io.netty.channel.Channel;
 import io.netty.channel.pool.ChannelPool;
 import io.netty.util.concurrent.Future;

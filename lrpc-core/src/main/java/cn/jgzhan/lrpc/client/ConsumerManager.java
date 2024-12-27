@@ -1,16 +1,16 @@
-package cn.jgzhan.lrpc.example.client;
+package cn.jgzhan.lrpc.client;
 
-import cn.jgzhan.lrpc.example.client.loadbalance.LoadBalanceFactory;
-import cn.jgzhan.lrpc.example.client.loadbalance.LoadBalancer;
-import cn.jgzhan.lrpc.example.client.net.ChannelManager;
-import cn.jgzhan.lrpc.example.client.net.LrpcChannelPoolFactory;
-import cn.jgzhan.lrpc.example.common.config.LrpcProperties;
-import cn.jgzhan.lrpc.example.common.dto.Message;
-import cn.jgzhan.lrpc.example.common.dto.Pair;
-import cn.jgzhan.lrpc.example.common.dto.RpcRequestMessage;
-import cn.jgzhan.lrpc.example.common.exception.LRPCTimeOutException;
-import cn.jgzhan.lrpc.example.common.handler.RpcRespHandler;
-import cn.jgzhan.lrpc.example.registry.ServiceManager;
+import cn.jgzhan.lrpc.client.loadbalance.LoadBalanceFactory;
+import cn.jgzhan.lrpc.client.loadbalance.LoadBalancer;
+import cn.jgzhan.lrpc.client.net.ChannelManager;
+import cn.jgzhan.lrpc.client.net.LrpcChannelPoolFactory;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.dto.Message;
+import cn.jgzhan.lrpc.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.RpcRequestMessage;
+import cn.jgzhan.lrpc.common.exception.LRPCTimeOutException;
+import cn.jgzhan.lrpc.common.handler.RpcRespHandler;
+import cn.jgzhan.lrpc.registry.ServiceManager;
 import com.alibaba.fastjson2.JSON;
 import io.netty.channel.Channel;
 import io.netty.channel.pool.FixedChannelPool;
@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.function.Function;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
 
 /**

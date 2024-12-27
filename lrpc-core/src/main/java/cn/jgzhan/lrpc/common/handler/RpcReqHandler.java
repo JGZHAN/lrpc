@@ -1,8 +1,8 @@
-package cn.jgzhan.lrpc.example.common.handler;
+package cn.jgzhan.lrpc.common.handler;
 
-import cn.jgzhan.lrpc.example.common.dto.RpcRequestMessage;
-import cn.jgzhan.lrpc.example.common.dto.RpcResponseMessage;
-import cn.jgzhan.lrpc.example.registry.ServiceManager;
+import cn.jgzhan.lrpc.common.dto.RpcRequestMessage;
+import cn.jgzhan.lrpc.common.dto.RpcResponseMessage;
+import cn.jgzhan.lrpc.registry.ServiceManager;
 import com.alibaba.fastjson2.JSON;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

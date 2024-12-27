@@ -1,7 +1,7 @@
-package cn.jgzhan.lrpc.example.example.impl;
+package cn.jgzhan.lrpc.example.impl;
 
-import cn.jgzhan.lrpc.example.common.annotation.LrpcService;
-import cn.jgzhan.lrpc.example.example.api.TestService;
+import cn.jgzhan.lrpc.common.annotation.LrpcService;
+import cn.jgzhan.lrpc.example.api.TestService;
 
 /**
  * @author jgzhan

@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.config;
+package cn.jgzhan.lrpc.common.config;
 
 /**
  * @author jgzhan

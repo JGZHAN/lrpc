@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.serializer;
+package cn.jgzhan.lrpc.common.serializer;
 
 import com.alibaba.fastjson2.JSONReader;
 

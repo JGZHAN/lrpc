@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.thread;
+package cn.jgzhan.lrpc.common.thread;
 
 import io.netty.util.concurrent.FastThreadLocalThread;
 import org.slf4j.Logger;
@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ForkJoinPool;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**

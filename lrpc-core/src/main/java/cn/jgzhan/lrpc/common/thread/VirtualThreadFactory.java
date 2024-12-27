@@ -1,7 +1,7 @@
-package cn.jgzhan.lrpc.example.common.thread;
+package cn.jgzhan.lrpc.common.thread;
 
-import cn.jgzhan.lrpc.example.common.config.LrpcProperties;
-import cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils;
 import io.netty.util.concurrent.DefaultThreadFactory;
 
 /**

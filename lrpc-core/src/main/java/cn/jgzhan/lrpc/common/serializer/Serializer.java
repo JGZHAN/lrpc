@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.serializer;
+package cn.jgzhan.lrpc.common.serializer;
 
 /**
  * @author jgzhan

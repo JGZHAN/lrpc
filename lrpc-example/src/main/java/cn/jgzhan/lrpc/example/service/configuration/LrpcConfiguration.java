@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.service.configuration;
+package cn.jgzhan.lrpc.example.service.configuration;
 
 import org.springframework.context.annotation.Configuration;
 
@@ -13,6 +13,6 @@ public class LrpcConfiguration {
 
 //    @Bean
 //    public ReferenceBeanPostProcessor referenceBeanPostProcessor() {
-//        return new ReferenceBeanPostProcessor(new LrpcProperties());
+//        return new ReferenceBeanPostProcessor(new LrpcPropertiesSpringBoot());
 //    }
 }

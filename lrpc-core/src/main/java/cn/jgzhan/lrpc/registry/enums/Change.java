@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.registry.enums;
+package cn.jgzhan.lrpc.registry.enums;
 
 /**
  * @author jgzhan

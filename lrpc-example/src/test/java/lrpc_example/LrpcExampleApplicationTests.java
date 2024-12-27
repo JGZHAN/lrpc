@@ -1,14 +1,15 @@
-package cn.jgzhan.lrpc_example;
+package lrpc_example;
 
 import cn.jgzhan.lrpc.common.annotation.LrpcReference;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.example.LrpcExampleApplication;
 import cn.jgzhan.lrpc.example.api.TestService;
-import cn.jgzhan.lrpc_example.properties.LrpcPropertiesCopy;
-import cn.jgzhan.lrpc_example.service.HelloService;
+import cn.jgzhan.lrpc.example.service.HelloService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = LrpcExampleApplication.class)
 class LrpcExampleApplicationTests {
 
     //	@Autowired
@@ -17,7 +18,7 @@ class LrpcExampleApplicationTests {
     @LrpcReference
     private TestService testService;
     @Autowired
-    private LrpcPropertiesCopy lrpcPropertiesCopy;
+    private LrpcProperties lrpcProperties;
 
     @Test
     void contextLoads() throws InterruptedException {

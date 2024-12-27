@@ -2,6 +2,7 @@ package consumer;
 
 import cn.jgzhan.lrpc.client.Comsumer;
 import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.config.LrpcPropertiesCore;
 import cn.jgzhan.lrpc.common.dto.Pair;
 import cn.jgzhan.lrpc.common.exception.LRPCTimeOutException;
 import cn.jgzhan.lrpc.example.api.TestService;
@@ -11,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Set;
-import java.util.concurrent.Executors;
 
 import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
@@ -35,12 +35,19 @@ public class ClientTest {
 
     @Test
     public void testClient() throws LRPCTimeOutException {
-        final var lrpcProperties = new LrpcProperties("application.properties");
+        // 给threadLocal赋值
+//        final var lrpcProperties = new LrpcPropertiesCore("application.properties");
+        final var lrpcProperties = new LrpcPropertiesCore();
         PROPERTIES_THREAD_LOCAL.set(lrpcProperties);
-        final var serviceManager = new ServiceManager();
-        Comsumer comsumer = new Comsumer(serviceManager.getClient());
+
+        // 启动服务
+        Comsumer comsumer = new Comsumer();
+
+        // 获取代理
         final var service = comsumer.getProxy(TestService.class, Set.of(Pair.of("127.0.0.1", lrpcProperties.getServer().getPort())));
 //        final var service = comsumer.getProxy(TestService.class);
+
+        // 调用方法
         final var result = service.hello("张三");
         log.info("测试结束, 结果: {}", result);
     }

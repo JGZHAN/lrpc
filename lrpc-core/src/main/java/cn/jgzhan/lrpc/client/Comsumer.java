@@ -1,10 +1,10 @@
-package cn.jgzhan.lrpc.example.client;
+package cn.jgzhan.lrpc.client;
 
-import cn.jgzhan.lrpc.example.common.dto.Message;
-import cn.jgzhan.lrpc.example.common.dto.Pair;
-import cn.jgzhan.lrpc.example.common.dto.RpcRequestMessage;
-import cn.jgzhan.lrpc.example.common.handler.RpcRespHandler;
-import cn.jgzhan.lrpc.example.registry.ServiceManager;
+import cn.jgzhan.lrpc.common.dto.Message;
+import cn.jgzhan.lrpc.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.RpcRequestMessage;
+import cn.jgzhan.lrpc.common.handler.RpcRespHandler;
+import cn.jgzhan.lrpc.registry.ServiceManager;
 import com.alibaba.fastjson2.JSON;
 import io.netty.util.concurrent.DefaultPromise;
 import io.netty.util.concurrent.Future;
@@ -30,6 +30,19 @@ public class Comsumer {
     private static final Logger log = LoggerFactory.getLogger(Comsumer.class);
 
     private final ConsumerManager consumerManager;
+
+    /**
+     * 该方法只用于测试，不建议使用
+     * 实际使用中，应该使用有参构造函数
+     * 与生产者共用一个serviceManager，后面一起关闭
+     */
+    @Deprecated
+    public Comsumer() {
+        final var serviceManager = new ServiceManager();
+        serviceManager.start();
+        // 调用有参构造函数
+        this.consumerManager = new ConsumerManager(serviceManager.getClient());
+    }
 
     public Comsumer(ServiceManager.Client serviceManager) {
         this.consumerManager = new ConsumerManager(serviceManager);

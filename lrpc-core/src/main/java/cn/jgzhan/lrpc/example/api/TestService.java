@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.example.api;
+package cn.jgzhan.lrpc.example.api;
 
 /**
  * @author jgzhan

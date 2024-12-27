@@ -1,9 +1,9 @@
-package cn.jgzhan.lrpc.example.registry.impl;
+package cn.jgzhan.lrpc.registry.impl;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
-import cn.jgzhan.lrpc.example.common.dto.Provider;
-import cn.jgzhan.lrpc.example.registry.RegistryCenter;
-import cn.jgzhan.lrpc.example.registry.enums.Change;
+import cn.jgzhan.lrpc.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.ProviderInfo;
+import cn.jgzhan.lrpc.registry.RegistryCenter;
+import cn.jgzhan.lrpc.registry.enums.Change;
 import lombok.NonNull;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
@@ -24,8 +24,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
-import static cn.jgzhan.lrpc.example.common.constant.RegistryConstant.PROVIDER;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.constant.RegistryConstant.PROVIDER;
 
 /**
  * @author jgzhan
@@ -109,18 +109,18 @@ public class ZookeeperRegistryCenter implements RegistryCenter {
     }
 
     @Override
-    public void watch(BiConsumer<Change, Provider> changeListener) {
+    public void watch(BiConsumer<Change, ProviderInfo> changeListener) {
         try {
             this.watch(PROVIDER, (type, oldData, data) -> {
                 switch (type) {
                     case NODE_CREATED ->
-                            convertToProviderOpt(data).ifPresent(provider -> changeListener.accept(Change.ADD, provider));
+                            convertToProviderOpt(data).ifPresent(providerInfo -> changeListener.accept(Change.ADD, providerInfo));
 
                     case NODE_CHANGED ->
-                            convertToProviderOpt(data).ifPresent(provider -> changeListener.accept(Change.UPDATE, provider));
+                            convertToProviderOpt(data).ifPresent(providerInfo -> changeListener.accept(Change.UPDATE, providerInfo));
 
                     case NODE_DELETED ->
-                            convertToProviderOpt(oldData).ifPresent(provider -> changeListener.accept(Change.REMOVE, provider));
+                            convertToProviderOpt(oldData).ifPresent(providerInfo -> changeListener.accept(Change.REMOVE, providerInfo));
                 }
             });
         } catch (Exception e) {
@@ -135,7 +135,7 @@ public class ZookeeperRegistryCenter implements RegistryCenter {
     }
 
     @NonNull
-    private static Optional<Provider> convertToProviderOpt(@NonNull ChildData data) {
+    private static Optional<ProviderInfo> convertToProviderOpt(@NonNull ChildData data) {
         final String path = data.getPath();
         final Matcher matcher = SERVICE_NODE_PATTERN.matcher(path);
 
@@ -143,7 +143,7 @@ public class ZookeeperRegistryCenter implements RegistryCenter {
             String serviceName = matcher.group(1);
             String host = matcher.group(2);
             int port = Integer.parseInt(matcher.group(3));
-            return Optional.of(new Provider(new Pair<>(host, port), serviceName));
+            return Optional.of(new ProviderInfo(new Pair<>(host, port), serviceName));
         }
         return Optional.empty();
     }

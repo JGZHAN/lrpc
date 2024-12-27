@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.common.annotation;
+package cn.jgzhan.lrpc.common.annotation;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.Pair;
 import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

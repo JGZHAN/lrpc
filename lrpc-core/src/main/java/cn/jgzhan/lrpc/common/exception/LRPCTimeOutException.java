@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.exception;
+package cn.jgzhan.lrpc.common.exception;
 
 
 import java.util.concurrent.TimeoutException;

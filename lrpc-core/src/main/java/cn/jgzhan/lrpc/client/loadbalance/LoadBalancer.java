@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.client.loadbalance;
+package cn.jgzhan.lrpc.client.loadbalance;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.Pair;
 
 import java.lang.reflect.Method;
 import java.util.Set;

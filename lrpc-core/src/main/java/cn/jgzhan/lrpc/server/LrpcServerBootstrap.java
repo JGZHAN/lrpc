@@ -1,9 +1,9 @@
-package cn.jgzhan.lrpc.example.server;
+package cn.jgzhan.lrpc.server;
 
-import cn.jgzhan.lrpc.example.common.config.LrpcProperties;
-import cn.jgzhan.lrpc.example.common.config.HandlerConfig;
-import cn.jgzhan.lrpc.example.common.group.VirtualThreadNioEventLoopGroup;
-import cn.jgzhan.lrpc.example.registry.ServiceManager;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.config.HandlerConfig;
+import cn.jgzhan.lrpc.common.group.VirtualThreadNioEventLoopGroup;
+import cn.jgzhan.lrpc.registry.ServiceManager;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.BindException;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
 /**
  * @author jgzhan

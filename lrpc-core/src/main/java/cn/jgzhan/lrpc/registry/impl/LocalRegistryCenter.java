@@ -1,9 +1,9 @@
-package cn.jgzhan.lrpc.example.registry.impl;
+package cn.jgzhan.lrpc.registry.impl;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
-import cn.jgzhan.lrpc.example.common.dto.Provider;
-import cn.jgzhan.lrpc.example.registry.enums.Change;
-import cn.jgzhan.lrpc.example.registry.RegistryCenter;
+import cn.jgzhan.lrpc.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.ProviderInfo;
+import cn.jgzhan.lrpc.registry.enums.Change;
+import cn.jgzhan.lrpc.registry.RegistryCenter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -29,7 +29,7 @@ public class LocalRegistryCenter implements RegistryCenter {
     }
 
     @Override
-    public void watch(BiConsumer<Change, Provider> changeListener) {
+    public void watch(BiConsumer<Change, ProviderInfo> changeListener) {
         // do nothing
     }
 

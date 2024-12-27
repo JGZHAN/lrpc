@@ -1,6 +1,6 @@
 package server;
 
-import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.config.LrpcPropertiesCore;
 import cn.jgzhan.lrpc.example.impl.TestServiceImpl;
 import cn.jgzhan.lrpc.spring.ReferenceBeanPostProcessor;
 import org.junit.Test;
@@ -16,9 +16,9 @@ public class ServiceTest {
 
 
     @Test
-    public void testStartServer() throws InterruptedException, IOException {
+    public void testStartServer() throws IOException {
 
-        final var lrpcProperties = new LrpcProperties("application.properties");
+        final var lrpcProperties = new LrpcPropertiesCore();
         final var referenceBeanPostProcessor = new ReferenceBeanPostProcessor(lrpcProperties);
         referenceBeanPostProcessor.postProcessBeforeInitialization(new TestServiceImpl(), "testService");
         System.in.read();

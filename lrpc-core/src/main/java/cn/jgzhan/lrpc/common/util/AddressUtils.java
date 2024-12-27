@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.common.util;
+package cn.jgzhan.lrpc.common.util;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;

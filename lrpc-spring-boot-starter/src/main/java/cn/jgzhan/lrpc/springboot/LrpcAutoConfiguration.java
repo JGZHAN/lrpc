@@ -1,5 +1,6 @@
-package cn.jgzhan.spring;
+package cn.jgzhan.lrpc.springboot;
 
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
 import cn.jgzhan.lrpc.spring.ReferenceBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -12,17 +13,17 @@ import org.springframework.context.annotation.Bean;
  * @version 1.0
  * @date 2024/12/17
  */
-@ConditionalOnClass({LrpcProperties.class})
-@EnableConfigurationProperties({LrpcProperties.class})
+@ConditionalOnClass({LrpcPropertiesSpringBoot.class})
+@EnableConfigurationProperties({LrpcPropertiesSpringBoot.class})
 @AutoConfiguration
 public class LrpcAutoConfiguration {
 
     @Autowired
-    private LrpcProperties lrpcProperties;
+    private LrpcProperties lrpcPropertiesSpringBoot;
 
     @Bean
     public ReferenceBeanPostProcessor referenceBeanPostProcessor() {
-        return new ReferenceBeanPostProcessor(lrpcProperties);
+        return new ReferenceBeanPostProcessor(lrpcPropertiesSpringBoot);
     }
 
 

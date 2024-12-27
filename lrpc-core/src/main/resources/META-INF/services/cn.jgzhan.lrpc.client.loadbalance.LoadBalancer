@@ -1,2 +1,2 @@
-cn.jgzhan.lrpc.example.client.loadbalance.RandomLoadBalancer
-cn.jgzhan.lrpc.example.client.loadbalance.RoundRobinLoadBalancer
+cn.jgzhan.lrpc.client.loadbalance.RandomLoadBalancer
+cn.jgzhan.lrpc.client.loadbalance.RoundRobinLoadBalancer

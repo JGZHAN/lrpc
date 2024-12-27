@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.example.common.util;
+package cn.jgzhan.lrpc.common.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 

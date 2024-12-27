@@ -1,9 +1,9 @@
-package cn.jgzhan.lrpc.example.common.config;
+package cn.jgzhan.lrpc.common.config;
 
-import cn.jgzhan.lrpc.example.common.handler.RpcReqHandler;
-import cn.jgzhan.lrpc.example.common.handler.RpcRespHandler;
-import cn.jgzhan.lrpc.example.common.protocol.LRPCDecoder;
-import cn.jgzhan.lrpc.example.registry.ServiceManager;
+import cn.jgzhan.lrpc.common.handler.RpcReqHandler;
+import cn.jgzhan.lrpc.common.handler.RpcRespHandler;
+import cn.jgzhan.lrpc.common.protocol.LRPCDecoder;
+import cn.jgzhan.lrpc.registry.ServiceManager;
 import io.netty.channel.ChannelHandler;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;

@@ -1,11 +1,11 @@
-package cn.jgzhan.lrpc.example.registry;
+package cn.jgzhan.lrpc.registry;
 
-import cn.jgzhan.lrpc.example.registry.impl.LocalRegistryCenter;
-import cn.jgzhan.lrpc.example.registry.impl.ZookeeperRegistryCenter;
+import cn.jgzhan.lrpc.registry.impl.LocalRegistryCenter;
+import cn.jgzhan.lrpc.registry.impl.ZookeeperRegistryCenter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static cn.jgzhan.lrpc.example.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
+import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
 /**
  * @author jgzhan

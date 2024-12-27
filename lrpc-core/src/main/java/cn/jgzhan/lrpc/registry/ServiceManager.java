@@ -1,8 +1,8 @@
-package cn.jgzhan.lrpc.example.registry;
+package cn.jgzhan.lrpc.registry;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
-import cn.jgzhan.lrpc.example.common.dto.Provider;
-import cn.jgzhan.lrpc.example.registry.enums.Change;
+import cn.jgzhan.lrpc.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.ProviderInfo;
+import cn.jgzhan.lrpc.registry.enums.Change;
 import io.netty.channel.pool.ChannelPool;
 import io.netty.channel.pool.FixedChannelPool;
 import lombok.Getter;
@@ -64,11 +64,11 @@ public class ServiceManager {
         public void watch() {
 
             // 观察者模式，监听注册中心的变化
-            registryCenter.watch((change, provider) -> {
+            registryCenter.watch((change, providerInfo) -> {
                 switch (change) {
-                    case Change.ADD -> addServiceAddress(provider);
-                    case Change.UPDATE -> updateServiceAddress(provider);
-                    case Change.REMOVE -> deleteServiceAddress(provider);
+                    case Change.ADD -> addServiceAddress(providerInfo);
+                    case Change.UPDATE -> updateServiceAddress(providerInfo);
+                    case Change.REMOVE -> deleteServiceAddress(providerInfo);
                 }
             });
         }
@@ -101,10 +101,10 @@ public class ServiceManager {
             return ADDRESS_POOL_MAP.computeIfAbsent(host + ":" + port, mappingFunction);
         }
 
-        private void deleteServiceAddress(Provider provider) {
-            log.info("删除服务提供者: {}", provider);
-            final var serviceName = provider.getServiceName();
-            final var address = provider.getAddress();
+        private void deleteServiceAddress(ProviderInfo providerInfo) {
+            log.info("删除服务提供者: {}", providerInfo);
+            final var serviceName = providerInfo.getServiceName();
+            final var address = providerInfo.getAddress();
             final Set<Pair<String, Integer>> addresses = SERVICE_ADDRESS_MAP.get(serviceName);
             if (addresses != null) {
                 addresses.remove(address);
@@ -115,14 +115,14 @@ public class ServiceManager {
             }
         }
 
-        private void updateServiceAddress(Provider provider) {
-            log.info("更新服务提供者: {}", provider);
-            addOrUpdateServiceAddress(provider.getServiceName(), provider.getAddress());
+        private void updateServiceAddress(ProviderInfo providerInfo) {
+            log.info("更新服务提供者: {}", providerInfo);
+            addOrUpdateServiceAddress(providerInfo.getServiceName(), providerInfo.getAddress());
         }
 
-        private void addServiceAddress(Provider provider) {
-            log.info("新增服务提供者: {}", provider);
-            addOrUpdateServiceAddress(provider.getServiceName(), provider.getAddress());
+        private void addServiceAddress(ProviderInfo providerInfo) {
+            log.info("新增服务提供者: {}", providerInfo);
+            addOrUpdateServiceAddress(providerInfo.getServiceName(), providerInfo.getAddress());
         }
 
         private void addOrUpdateServiceAddress(String methodStr, Pair<String, Integer> address) {

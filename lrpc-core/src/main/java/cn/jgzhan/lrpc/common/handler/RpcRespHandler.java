@@ -1,6 +1,6 @@
-package cn.jgzhan.lrpc.example.common.handler;
+package cn.jgzhan.lrpc.common.handler;
 
-import cn.jgzhan.lrpc.example.common.dto.RpcResponseMessage;
+import cn.jgzhan.lrpc.common.dto.RpcResponseMessage;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

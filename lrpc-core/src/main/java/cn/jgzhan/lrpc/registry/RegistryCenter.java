@@ -1,8 +1,8 @@
-package cn.jgzhan.lrpc.example.registry;
+package cn.jgzhan.lrpc.registry;
 
-import cn.jgzhan.lrpc.example.common.dto.Pair;
-import cn.jgzhan.lrpc.example.common.dto.Provider;
-import cn.jgzhan.lrpc.example.registry.enums.Change;
+import cn.jgzhan.lrpc.common.dto.Pair;
+import cn.jgzhan.lrpc.common.dto.ProviderInfo;
+import cn.jgzhan.lrpc.registry.enums.Change;
 
 import java.lang.reflect.Method;
 import java.net.InetAddress;
@@ -48,7 +48,7 @@ public interface RegistryCenter {
      *
      * @param changeListener 服务变化监听器
      */
-    void watch(BiConsumer<Change, Provider> changeListener);
+    void watch(BiConsumer<Change, ProviderInfo> changeListener);
 
     void start();
 
