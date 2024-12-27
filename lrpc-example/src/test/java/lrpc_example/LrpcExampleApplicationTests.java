@@ -25,8 +25,8 @@ class LrpcExampleApplicationTests {
         for (int i = 0; i < 50; i++) {
             Thread.sleep(1000);
 //            System.out.println(exampleService.call("jgzhan" + i));
-//            System.out.println(helloService.sayHello("jgzhan" + i));
-            System.out.println(testService.hello("jgzhan" + i));
+            System.out.println(helloService.sayHello("jgzhan" + i));
+//            System.out.println(testService.hello("jgzhan" + i));
         }
     }
 
