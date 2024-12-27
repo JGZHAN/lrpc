@@ -1,6 +1,5 @@
 package cn.jgzhan.lrpc.example.impl;
 
-import cn.jgzhan.lrpc.common.annotation.LrpcService;
 import cn.jgzhan.lrpc.example.api.TestService;
 
 /**
@@ -8,7 +7,6 @@ import cn.jgzhan.lrpc.example.api.TestService;
  * @version 1.0
  * @date 2024/12/9
  */
-@LrpcService
 public class TestServiceImpl implements TestService {
     @Override
     public String hello(String name) {

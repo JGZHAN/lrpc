@@ -1,6 +1,6 @@
 package cn.jgzhan.lrpc.example.service.impl;
 
-import cn.jgzhan.lrpc.common.annotation.LrpcService;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcService;
 import cn.jgzhan.lrpc.example.service.HelloService;
 
 /**

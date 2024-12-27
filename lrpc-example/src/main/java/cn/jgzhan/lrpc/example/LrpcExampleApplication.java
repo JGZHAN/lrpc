@@ -1,6 +1,6 @@
 package cn.jgzhan.lrpc.example;
 
-import cn.jgzhan.lrpc.annotation.LrpcScan;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

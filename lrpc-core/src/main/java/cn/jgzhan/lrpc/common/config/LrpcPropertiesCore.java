@@ -102,7 +102,7 @@ public class LrpcPropertiesCore extends LrpcProperties {
         }
 
         public int getWorkerMax() {
-            return Integer.parseInt(properties.getProperty("lrpc.server.workerMax", "1000"));
+            return Integer.parseInt(properties.getProperty("lrpc.server.worker-max", "1000"));
         }
 
     }
@@ -115,12 +115,12 @@ public class LrpcPropertiesCore extends LrpcProperties {
         }
 
         public int getAddressMaxConnection() {
-            return Integer.parseInt(properties.getProperty("lrpc.client.addressMaxConnection", "1000"));
+            return Integer.parseInt(properties.getProperty("lrpc.client.address-max-connection", "1000"));
         }
 
         // 获取负载均衡算法，默认为轮询
         public LoadBalancerType getLoadBalance() {
-            return LoadBalancerType.valueOf(properties.getProperty("lrpc.client.loadbalance.type", "ROUND_ROBIN"));
+            return LoadBalancerType.valueOf(properties.getProperty("lrpc.client.load-balance", "ROUND_ROBIN"));
         }
     }
 

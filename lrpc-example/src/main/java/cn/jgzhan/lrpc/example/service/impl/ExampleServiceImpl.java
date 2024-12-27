@@ -1,6 +1,6 @@
 package cn.jgzhan.lrpc.example.service.impl;
 
-import cn.jgzhan.lrpc.common.annotation.LrpcReference;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcReference;
 import cn.jgzhan.lrpc.example.service.ExampleService;
 import cn.jgzhan.lrpc.example.service.HelloService;
 import org.springframework.stereotype.Component;

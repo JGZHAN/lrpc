@@ -1,6 +1,6 @@
 package lrpc_example;
 
-import cn.jgzhan.lrpc.common.annotation.LrpcReference;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcReference;
 import cn.jgzhan.lrpc.common.config.LrpcProperties;
 import cn.jgzhan.lrpc.example.LrpcExampleApplication;
 import cn.jgzhan.lrpc.example.api.TestService;

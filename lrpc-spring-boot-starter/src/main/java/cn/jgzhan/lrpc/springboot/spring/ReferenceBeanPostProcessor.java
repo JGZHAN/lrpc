@@ -1,8 +1,8 @@
-package cn.jgzhan.lrpc.spring;
+package cn.jgzhan.lrpc.springboot.spring;
 
 import cn.jgzhan.lrpc.client.Comsumer;
-import cn.jgzhan.lrpc.common.annotation.LrpcReference;
-import cn.jgzhan.lrpc.common.annotation.LrpcService;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcReference;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcService;
 import cn.jgzhan.lrpc.common.config.LrpcProperties;
 import cn.jgzhan.lrpc.common.util.AddressUtils;
 import cn.jgzhan.lrpc.common.util.FieldUtils;

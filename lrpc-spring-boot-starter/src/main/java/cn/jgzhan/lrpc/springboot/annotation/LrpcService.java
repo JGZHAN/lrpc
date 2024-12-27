@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.common.annotation;
+package cn.jgzhan.lrpc.springboot.annotation;
 
 import java.lang.annotation.*;
 

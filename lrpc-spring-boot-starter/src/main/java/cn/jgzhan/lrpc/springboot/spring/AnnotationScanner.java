@@ -1,4 +1,4 @@
-package cn.jgzhan.lrpc.spring;
+package cn.jgzhan.lrpc.springboot.spring;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;

@@ -1,7 +1,7 @@
-package cn.jgzhan.lrpc.springboot;
+package cn.jgzhan.lrpc.springboot.configuration;
 
 import cn.jgzhan.lrpc.common.config.LrpcProperties;
-import cn.jgzhan.lrpc.spring.ReferenceBeanPostProcessor;
+import cn.jgzhan.lrpc.springboot.properties.LrpcPropertiesSpringBoot;import cn.jgzhan.lrpc.springboot.spring.ReferenceBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

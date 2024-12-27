@@ -1,11 +1,9 @@
-package cn.jgzhan.lrpc.springboot;
+package cn.jgzhan.lrpc.springboot.properties;
 
 import cn.jgzhan.lrpc.client.loadbalance.LoadBalancerType;
 import cn.jgzhan.lrpc.common.config.LrpcProperties;
 import cn.jgzhan.lrpc.common.serializer.SerializerEnum;
 import cn.jgzhan.lrpc.registry.enums.RegistryType;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

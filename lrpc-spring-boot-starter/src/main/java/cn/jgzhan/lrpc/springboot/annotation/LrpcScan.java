@@ -1,8 +1,7 @@
-package cn.jgzhan.lrpc.annotation;
+package cn.jgzhan.lrpc.springboot.annotation;
 
-import cn.jgzhan.lrpc.spring.ServiceScannerRegistrar;
+import cn.jgzhan.lrpc.springboot.spring.ServiceScannerRegistrar;
 import org.springframework.context.annotation.Import;
-
 import java.lang.annotation.*;
 
 /**

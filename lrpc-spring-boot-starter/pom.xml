@@ -21,8 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>cn.jgzhan.lrpc</groupId>
-            <artifactId>lrpc-spring</artifactId>
-            <version>${lrpcSpringVersion}</version>
+            <artifactId>lrpc-core</artifactId>
+            <version>${lrpcCoreVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

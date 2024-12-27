@@ -1,7 +1,7 @@
-package cn.jgzhan.lrpc.spring;
+package cn.jgzhan.lrpc.springboot.spring;
 
-import cn.jgzhan.lrpc.annotation.LrpcScan;
-import cn.jgzhan.lrpc.common.annotation.LrpcService;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcScan;
+import cn.jgzhan.lrpc.springboot.annotation.LrpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
