@@ -17,17 +17,16 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class PoolVirtualThread extends FastThreadLocalThread {
     private static final Logger log = LoggerFactory.getLogger(PoolVirtualThread.class);
 
-    private final Builder.OfVirtual VIRTUAL_THREAD_BUILDER;
+    private static final Builder.OfVirtual VIRTUAL_THREAD_BUILDER = createDefaultScheduler();
 
-    public PoolVirtualThread(ThreadGroup group, Runnable target, String name) {
-        super(group, target, name);
-        /**
-         * 因为ThreadBuilders.VirtualThreadBuilder的scheduler属性是私有的，且没有提供set方法
-         * 所以通过反射强制修改属性scheduler
-         */
-        VIRTUAL_THREAD_BUILDER = Thread.ofVirtual();
+    /**
+     * 因为ThreadBuilders.VirtualThreadBuilder的scheduler属性是私有的，且没有提供set方法
+     * 所以通过反射强制修改属性scheduler
+     */
+    private static Builder.OfVirtual createDefaultScheduler() {
+        final Builder.OfVirtual virtualThreadBuilder = Thread.ofVirtual();
         try {
-            final var schedulerField = VIRTUAL_THREAD_BUILDER.getClass().getDeclaredField("scheduler");
+            final var schedulerField = virtualThreadBuilder.getClass().getDeclaredField("scheduler");
             schedulerField.setAccessible(true);
             final var serverWorkerMax = PROPERTIES_THREAD_LOCAL.get().getServer().getWorkerMax();
             boolean asyncMode = true;// FIFO
@@ -41,10 +40,16 @@ public class PoolVirtualThread extends FastThreadLocalThread {
                     pool -> true,
                     30, SECONDS);
 
-            schedulerField.set(VIRTUAL_THREAD_BUILDER, forkJoinPool);
+            schedulerField.set(virtualThreadBuilder, forkJoinPool);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             log.error("修改属性scheduler失败", e);
         }
+        return virtualThreadBuilder;
+    }
+
+
+    public PoolVirtualThread(ThreadGroup group, Runnable target, String name) {
+        super(group, target, name);
     }
 
     @Override

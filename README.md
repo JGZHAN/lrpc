@@ -7,7 +7,7 @@
 
 
 # 模块说明
-## 1:rpc-core
+## 1:lrpc-core
 - rpc框架的核心代码，适用于一般的maven项目,主要包括以下几个部分
     - client：rpc框架的客户端,主要包括了客户端的连接管理、请求发送、请求接收、负载均衡等功能；
     - server：rpc框架的服务端,主要包括了服务端的serverSocket监听、请求接收、请求处理、响应发送等功能；
@@ -15,14 +15,14 @@
     - common：rpc框架的公共模块,主要包括了一些公共的工具类、协议编解码定义、注解定义；
     - example：rpc框架的用例的示例接口及实现类，供测试使用；
 
-## 2:rpc-spring-boot-starter
+## 2:lrpc-spring-boot-starter
 - rpc框架的spring-boot集成,适用于spring-boot项目,提供了自动配置功能,该module依赖lrpc-core,主要包括以下几个部分
     - autoconfigure：rpc框架的自动配置模块,主要包括了rpc框架的自动配置类；
     - annotation：rpc框架的注解模块, 主要包括了rpc框架在spring-boot项目中使用的注解，如服务提供者@LrpcService、服务消费者@LrpcReference、服务扫描包@LrpcScan等；
     - properties：rpc框架的配置模块,有LrpcProperties类的子类，主要是利用spring-boot的配置文件进行rpc框架的配置；
     - spring：rpc框架的spring集成模块,主要包括了rpc框架在spring-boot项目中的一些扩展功能。主要实现了BeanPostProcessor接口，用于扫描服务提供者、服务消费者等注解，并进行相应的处理，这也是rpc框架注入到spring容器中的入口；
 
-## 3:rpc-example
+## 3:lrpc-example
 - 该module是rpc框架的简单使用示例,也是一个spring-boot项目
     - server：rpc框架的服务提供者示例，主要包括了服务提供者的配置、服务接口的实现、服务的注册等；
   
@@ -45,7 +45,7 @@
 ````
 
 
-### 1:rpc-core的使用方式
+### 1:lrpc-core的使用方式
 - 服务端
 - 用例链接：[ServerTest](lrpc-core/src/test/java/server/ServerTest.java)
 ```java
@@ -91,5 +91,59 @@ public void testClient() throws LRPCTimeOutException {
     // 调用方法
     final var result = service.hello("张三");
     log.info("测试结束, 结果: {}", result);
+}
+```
+
+
+
+### 2:lrpc-spring-boot-starter的使用方式(其实就是按照lrpc-example模块的使用方式)
+先添加相关依赖
+```xml
+
+<dependencys>
+<!--  添加lrpc-spring-boot-starter依赖 -->
+    <dependency>
+        <groupId>cn.jgzhan.lrpc</groupId>
+        <artifactId>lrpc-spring-boot-starter</artifactId>
+        <version>@{lrpcSpringbootVersion}</version>
+    </dependency>
+<!--    spring-boot依赖及test依赖 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+</dependencys>
+```
+
+- spring-boot服务就不区分服务端和客户端了，因为有提供服务也有消费服务，所以既是服务端也是客户端，所以只需要添加注解即可；
+- 用例链接：[LrpcExampleApplicationTests.java](lrpc-example/src/test/java/lrpc_example/LrpcExampleApplicationTests.java)
+```java
+@SpringBootTest(classes = LrpcExampleApplication.class)
+class LrpcExampleApplicationTests {
+
+    //	@Autowired
+    @LrpcReference
+    private HelloService helloService;
+    @LrpcReference
+    private TestService testService;
+    @Autowired
+    private LrpcProperties lrpcProperties;
+
+    @Test
+    void contextLoads() throws InterruptedException {
+        for (int i = 0; i < 50; i++) {
+            Thread.sleep(1000);
+//            System.out.println(exampleService.call("jgzhan" + i));
+            System.out.println(helloService.sayHello("jgzhan" + i));
+//            System.out.println(testService.hello("jgzhan" + i));
+        }
+    }
+
+
 }
 ```
