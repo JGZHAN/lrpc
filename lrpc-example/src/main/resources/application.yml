@@ -7,6 +7,10 @@ lrpc:
   server:
     port: 23923
     worker-max: 1001
+  registry:
+    type: ZOOKEEPER
+    zookeeper:
+      address: 8.210.175.23:2181
 
 spring:
   application:

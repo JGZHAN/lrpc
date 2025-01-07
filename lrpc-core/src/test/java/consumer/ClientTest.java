@@ -11,7 +11,11 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
@@ -50,5 +54,42 @@ public class ClientTest {
         // 调用方法
         final var result = service.hello("张三");
         log.info("测试结束, 结果: {}", result);
+    }
+
+
+    @Test
+    public void testClientBatch() throws LRPCTimeOutException, IOException, InterruptedException {
+        // 给threadLocal赋值
+//        final var lrpcProperties = new LrpcPropertiesCore("application.properties");
+        final var executor = Executors.newVirtualThreadPerTaskExecutor();
+
+//        for (int i = 0; i < 10; i++) {
+//        int finalI = i;
+        final var atomicInteger = new AtomicInteger(0);
+        for (; ; ) {
+            int finalI = atomicInteger.getAndIncrement();
+
+            executor.submit(() -> {
+                final var lrpcProperties = new LrpcPropertiesCore();
+                PROPERTIES_THREAD_LOCAL.set(lrpcProperties);
+
+                // 启动服务
+                Comsumer comsumer = new Comsumer();
+                // 获取代理
+                final var service = comsumer.getProxy(TestService.class, Set.of(Pair.of("127.0.0.1", lrpcProperties.getServer().getPort())));
+
+                try {
+                    // 调用方法
+                    final var result = service.hello("张三" + finalI);
+                    log.info("测试结束, 结果: {}", result);
+                } catch (Exception e) {
+                    log.error("测试失败", e);
+                }
+            });
+
+            Thread.sleep(10);
+
+        }
+//        System.in.read();
     }
 }

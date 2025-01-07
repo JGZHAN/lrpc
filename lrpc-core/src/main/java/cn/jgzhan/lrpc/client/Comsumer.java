@@ -3,6 +3,7 @@ package cn.jgzhan.lrpc.client;
 import cn.jgzhan.lrpc.common.dto.Message;
 import cn.jgzhan.lrpc.common.dto.Pair;
 import cn.jgzhan.lrpc.common.dto.RpcRequestMessage;
+import cn.jgzhan.lrpc.common.exception.LRPCTimeOutException;
 import cn.jgzhan.lrpc.common.handler.RpcRespHandler;
 import cn.jgzhan.lrpc.registry.ServiceManager;
 import com.alibaba.fastjson2.JSON;
@@ -61,8 +62,7 @@ public class Comsumer {
     public <T> T getProxy(Class<T> clazz, Set<Pair<String, Integer>> serviceAddress) {
         final var proxyInstance = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, (proxy, method, args) -> {
             RpcRequestMessage msg = buildRpcRequestMessage(clazz, method, args);
-            final var resultPromise = consumerManager.send(msg, method, serviceAddress);
-            return getResult(resultPromise, msg.getMessageId());
+            return consumerManager.send(msg, method, serviceAddress);
         });
         return clazz.cast(proxyInstance);
     }
@@ -78,20 +78,24 @@ public class Comsumer {
         return msg;
     }
 
-    private static Object getResult(Promise<Object> promise, Integer messageId) {
+    private static Object getResult(Promise<Object> promise, Integer messageId) throws LRPCTimeOutException {
         try {
             // 超时等待
-            promise.await(5, TimeUnit.SECONDS);
-            if (promise.isSuccess()) {
-                return promise.getNow();
+            if (promise.await(5, TimeUnit.SECONDS)) {
+                if (promise.isSuccess()) {
+                    return promise.getNow();
+                } else {
+                    throw new RuntimeException(promise.cause());
+                }
+            } else {
+                throw new LRPCTimeOutException("请求超时");
             }
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("操作被中断", e);
         } finally {
-            // 防止异常情况下，promise没有被移除
+            // 确保 promise 被移除
             RpcRespHandler.removePromise(messageId);
         }
-        throw new RuntimeException(promise.cause());
     }
 
 

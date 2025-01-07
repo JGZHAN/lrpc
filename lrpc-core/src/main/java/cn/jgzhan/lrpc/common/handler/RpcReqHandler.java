@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+
 
 /**
  * @author jgzhan
@@ -29,7 +31,7 @@ public class RpcReqHandler extends SimpleChannelInboundHandler<RpcRequestMessage
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequestMessage msg) {
 
-//        log.info("接收到消息 {}", JSON.toJSON(msg));
+        log.info("接收到消息 {}", JSON.toJSON(msg));
         final var interfaceName = msg.getInterfaceName();
         final var methodName = msg.getMethodName();
 

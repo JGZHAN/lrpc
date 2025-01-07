@@ -11,7 +11,6 @@ import cn.jgzhan.lrpc.common.dto.RpcRequestMessage;
 import cn.jgzhan.lrpc.common.exception.LRPCTimeOutException;
 import cn.jgzhan.lrpc.common.handler.RpcRespHandler;
 import cn.jgzhan.lrpc.registry.ServiceManager;
-import com.alibaba.fastjson2.JSON;
 import io.netty.channel.Channel;
 import io.netty.channel.pool.FixedChannelPool;
 import io.netty.util.concurrent.DefaultPromise;
@@ -23,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.Set;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 import static cn.jgzhan.lrpc.common.config.LrpcPropertiesUtils.PROPERTIES_THREAD_LOCAL;
 
@@ -45,6 +44,8 @@ public class ConsumerManager {
 
     private final ServiceManager.Client serviceManager;
 
+    private final BiFunction<Channel, RpcRequestMessage, Promise<Object>> channelExeFunction = channelExeFunction();
+
 
     public ConsumerManager(ServiceManager.Client serviceManager) {
         this.lrpcProperties = PROPERTIES_THREAD_LOCAL.get();
@@ -55,24 +56,23 @@ public class ConsumerManager {
 
 
     // 发送请求
-    public Promise<Object> send(RpcRequestMessage msg, Method method, Set<Pair<String, Integer>> addressSet) throws LRPCTimeOutException {
-        final Function<Channel, Promise<Object>> channelExeFunction = channelExeFunction(msg);
+    public Object send(RpcRequestMessage msg, Method method, Set<Pair<String, Integer>> addressSet) throws LRPCTimeOutException {
         // 负载均衡选择服务地址
         final var address = clazzToAddress(method, addressSet);
         // 获取连接池
         final var channelPool = getChannelPool(address);
         // 在连接池中执行请求
-        return channelManager.executeWithChannelPool(channelPool, channelExeFunction);
+        return channelManager.executeWithChannelPool(channelPool, channelExeFunction, msg);
     }
 
 
     private static GenericFutureListener<Future<? super Void>> processAftermath(DefaultPromise<Object> promise, Message msg) {
         return future -> {
-            log.info("发送请求结束 {}", JSON.toJSON(msg));
+//            log.info("发送请求结束 {}", JSON.toJSON(msg));
             if (future.isSuccess()) {
                 return;
             }
-            log.error("发送请求失败", future.cause());
+//            log.error("发送请求失败", future.cause());
             promise.setFailure(future.cause());
         };
     }
@@ -95,9 +95,9 @@ public class ConsumerManager {
                 _ -> LrpcChannelPoolFactory.createFixedChannelPool(host, port, lrpcProperties.getClient().getAddressMaxConnection()));
     }
 
-    private static Function<Channel, Promise<Object>> channelExeFunction(RpcRequestMessage msg) {
+    private static BiFunction<Channel, RpcRequestMessage, Promise<Object>> channelExeFunction() {
         // 发送请求，且处理写失败
-        return channel -> {
+        return (channel, msg) -> {
             final var promise = new DefaultPromise<>(channel.eventLoop());
             RpcRespHandler.addPromise(msg.getMessageId(), promise);
             // 发送请求，且处理写失败

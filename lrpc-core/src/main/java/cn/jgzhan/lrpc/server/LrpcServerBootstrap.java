@@ -1,8 +1,8 @@
 package cn.jgzhan.lrpc.server;
 
-import cn.jgzhan.lrpc.common.config.LrpcProperties;
 import cn.jgzhan.lrpc.common.config.HandlerConfig;
-import cn.jgzhan.lrpc.common.group.VirtualThreadNioEventLoopGroup;
+import cn.jgzhan.lrpc.common.config.LrpcProperties;
+import cn.jgzhan.lrpc.common.thread.VirtualThreadFactory;
 import cn.jgzhan.lrpc.registry.ServiceManager;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -41,13 +41,13 @@ public class LrpcServerBootstrap {
     public LrpcServerBootstrap(ServiceManager.Server serviceManager) {
         this.lrpcProperties = PROPERTIES_THREAD_LOCAL.get();
         this.serviceManager = serviceManager;
+        // 1. 创建一个服务端对象
+        bootstrap = new ServerBootstrap();
     }
 
     public void start() {
-        // 1. 创建一个服务端对象
-        bootstrap = new ServerBootstrap();
         final var boss = new NioEventLoopGroup(1);
-        final var worker = new VirtualThreadNioEventLoopGroup(lrpcProperties.getServer().getWorkerMax());
+        final var worker = getWorker();
         bootstrap.group(boss, worker);
         bootstrap.channel(NioServerSocketChannel.class);
         bootstrap.childHandler(new ChannelInitializer<NioSocketChannel>() {
@@ -73,6 +73,15 @@ public class LrpcServerBootstrap {
             }
             throw new RuntimeException(e);
         }
+    }
+
+    private NioEventLoopGroup getWorker() {
+        return new NioEventLoopGroup(lrpcProperties.getServer().getWorkerMax()) {
+            @Override
+            protected VirtualThreadFactory newDefaultThreadFactory() {
+                return new VirtualThreadFactory(NioEventLoopGroup.class, Thread.MAX_PRIORITY);
+            }
+        };
     }
 
     private void bindPort(int port) {
