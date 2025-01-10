@@ -3,6 +3,9 @@ English version：[README_EN.md](README_EN.md)｜中文版：[README.md](README.
 
 ![ReadMe Views](https://komarev.com/ghpvc/?username=lrpc&color=blue)
 
+### &#8627; Stargazers
+[![Stargazers repo roster for @JGZHAN/lrpc](https://reporoster.com/stars/notext/JGZHAN/lrpc)](https://github.com/JGZHAN/lrpc/stargazers)
+
 ## 项目说明
 ### 1: 为什么重复造轮子？
 - 本项目是为了学习RPC框架的原理，所以实现了一个简单的RPC框架，再加上最近在学习java的新特性虚拟线程，结合netty，编写了这个RPC框架。若公司需自研RPC框架，前期可以参考本项目的实现，后期再根据公司的需求进行定制化开发。后续有什么问题，也欢迎积极交流，共同学习，看到后会在有空的第一时间回应。
