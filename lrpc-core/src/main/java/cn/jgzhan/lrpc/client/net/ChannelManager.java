@@ -49,6 +49,7 @@ public class ChannelManager {
         try {
             return getResult(promise, msg.getMessageId());
         } finally {
+            // 这里的释放需要放在拿到结果之后，否则会导臃连接被释放
             channelPool.release(channel);
         }
     }

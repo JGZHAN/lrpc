@@ -1,4 +1,8 @@
 # 一个使用java新特性虚拟线程，结合netty，编写的一个基于自定义协议的RPC（远程过程调用）框架
+English version：[README_EN.md](README_EN.md)｜中文版：[README.md](README.md)
+
+![ReadMe Views](https://komarev.com/ghpvc/?username=lrpc&color=blue)
+
 ## 项目说明
 ### 1: 为什么重复造轮子？
 - 本项目是为了学习RPC框架的原理，所以实现了一个简单的RPC框架，再加上最近在学习java的新特性虚拟线程，结合netty，编写了这个RPC框架。若公司需自研RPC框架，前期可以参考本项目的实现，后期再根据公司的需求进行定制化开发。后续有什么问题，也欢迎积极交流，共同学习，看到后会在有空的第一时间回应。
@@ -30,19 +34,6 @@
 ## 前置说明
   在test目录下有相应的测试用例，可以参考测试用例的使用方式，若要使用zk作为注册中心，需要在application.properties中配置zk的地址
 #### ![img.png](img/img.png)
-
-**由于服务提供者的线程使用了虚拟线程，所以需要在启动类中添加以下参数，强制修改了java类的内部属性，所以在本地启动，或者启动脚本中添加以下参数**
-
-### 以下三选一
-### 方案1: IDEA单个添加参数方式
-![img.png](img/img_1.png)
-### 方案2: IDEA添加参数模版，后续每次启动都会自动添加
-![img.png](img/img_2.png)
-![img.png](img/img_3.png)
-### 方案3: 启动脚本添加参数方式
-```shell
---add-opens java.base/java.lang=ALL-UNNAMED
-````
 
 
 ### 1:lrpc-core的使用方式
